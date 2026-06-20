@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>🏎️ Balapan Mobil 2D Premium</title>
+
+<style>
+body{
+margin:0;
+text-align:center;
+font-family:Arial;
+color:white;
+background:linear-gradient(to bottom,#2b003d,#d69bc7);
+overflow:hidden;
+}
+
+h1{
+text-shadow:0 0 20px pink;
+}
+
+#score{
+font-size:30px;
+margin-bottom:15px;
+}
+
+#game{
+position:relative;
+width:320px;
+height:550px;
+margin:auto;
+background:#333;
+border:8px solid white;
+overflow:hidden;
+}
+
+.line{
+position:absolute;
+width:10px;
+height:60px;
+background:white;
+left:155px;
+}
+
+#player{
+position:absolute;
+bottom:20px;
+left:130px;
+font-size:50px;
+transition:0.1s;
+}
+
+#enemy{
+position:absolute;
+top:-70px;
+left:130px;
+font-size:50px;
+}
+
+.controls{
+margin-top:20px;
+}
+
+button{
+width:90px;
+height:60px;
+font-size:30px;
+border:none;
+border-radius:20px;
+background:#ff66b3;
+color:white;
+margin:10px;
+box-shadow:0 0 20px pink;
+}
+
+.menu button{
+width:150px;
+font-size:20px;
+}
+</style>
+</head>
+<body>
+
+<h1>🏎️ Balapan Mobil 2D</h1>
+
+<div id="score">
+Skor: <span id="nilai">0</span>
+</div>
+
+<div id="game">
+
+<div class="line" style="top:0"></div>
+<div class="line" style="top:120px"></div>
+<div class="line" style="top:240px"></div>
+<div class="line" style="top:360px"></div>
+<div class="line" style="top:480px"></div>
+
+<div id="enemy">🚓</div>
+
+<div id="player">🏎️</div>
+
+</div>
+
+<div class="controls">
+<button onclick="kiri()">⬅️</button>
+<button onclick="kanan()">➡️</button>
+</div>
+
+<div class="menu">
+<button onclick="location.reload()">🔄 Main Lagi</button>
+
+<button onclick='window.location="/"'>
+🏠 Beranda
+</button>
+</div>
+
+<script>
+let playerPos=130;
+let enemyY=-80;
+let enemyPos=[40,130,220];
+let enemyX=enemyPos[Math.floor(Math.random()*3)];
+let skor=0;
+
+function kiri(){
+if(playerPos>40){
+playerPos-=90;
+document.getElementById("player").style.left=playerPos+"px";
+}
+}
+
+function kanan(){
+if(playerPos<220){
+playerPos+=90;
+document.getElementById("player").style.left=playerPos+"px";
+}
+}
+
+setInterval(function(){
+
+enemyY+=5;
+
+document.getElementById("enemy").style.top=enemyY+"px";
+document.getElementById("enemy").style.left=enemyX+"px";
+
+if(enemyY>550){
+enemyY=-80;
+enemyX=enemyPos[Math.floor(Math.random()*3)];
+skor++;
+document.getElementById("nilai").innerHTML=skor;
+}
+
+if(enemyY>430 && enemyX==playerPos){
+alert("💥 GAME OVER!\nSkor: "+skor);
+location.reload();
+}
+
+},30);
+</script>
+
+</body>
+</html>

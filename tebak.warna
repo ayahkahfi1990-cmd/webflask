@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌈 Tebak Warna - RaynaN World</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(to bottom,#170225,#3f0a5c,#ffb6d9);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+text-align:center;
+}
+
+.box{
+background:rgba(255,255,255,0.15);
+padding:30px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 20px pink;
+width:90%;
+max-width:500px;
+}
+
+#warna{
+width:150px;
+height:150px;
+margin:20px auto;
+border-radius:20px;
+border:3px solid white;
+}
+
+button{
+padding:12px 20px;
+margin:8px;
+font-size:18px;
+border:none;
+border-radius:15px;
+background:#ff69b4;
+color:white;
+cursor:pointer;
+box-shadow:0 0 15px pink;
+}
+
+#hasil{
+margin-top:20px;
+font-size:24px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+
+<h1>🌈 Tebak Warna</h1>
+
+<p>Tebak warna yang muncul!</p>
+
+<div id="warna"></div>
+
+<div id="pilihan"></div>
+
+<div id="hasil"></div>
+
+</div>
+
+<script>
+
+const daftarWarna = [
+"Merah",
+"Biru",
+"Hijau",
+"Kuning",
+"Ungu",
+"Pink"
+];
+
+const kodeWarna = {
+"Merah":"red",
+"Biru":"blue",
+"Hijau":"green",
+"Kuning":"yellow",
+"Ungu":"purple",
+"Pink":"pink"
+};
+
+let jawaban;
+
+function mulai(){
+
+jawaban = daftarWarna[Math.floor(Math.random()*daftarWarna.length)];
+
+document.getElementById("warna").style.background =
+kodeWarna[jawaban];
+
+let html = "";
+
+daftarWarna.forEach(function(warna){
+
+html += `
+<button onclick="cek('${warna}')">
+${warna}
+</button>
+`;
+
+});
+
+document.getElementById("pilihan").innerHTML = html;
+
+document.getElementById("hasil").innerHTML = "";
+
+}
+
+function cek(pilihan){
+
+if(pilihan == jawaban){
+
+document.getElementById("hasil").innerHTML =
+"🎉 Benar!";
+
+setTimeout(mulai,1000);
+
+}else{
+
+document.getElementById("hasil").innerHTML =
+"❌ Salah! Coba lagi.";
+
+}
+
+}
+
+mulai();
+
+</script>
+
+</body>
+</html>

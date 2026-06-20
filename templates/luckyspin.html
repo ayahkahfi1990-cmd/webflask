@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>🎁 Lucky Spin Premium</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+color:white;
+background:linear-gradient(to bottom,#2b003d,#6d3c86,#e6a6c7);
+overflow:hidden;
+}
+
+.container{
+margin-top:30px;
+}
+
+h1{
+text-shadow:0 0 15px pink;
+}
+
+.wheel{
+width:250px;
+height:250px;
+border-radius:50%;
+margin:auto;
+border:8px solid white;
+box-shadow:0 0 30px pink;
+transition:transform 5s ease-out;
+
+background:conic-gradient(
+#ff66b3 0deg 45deg,
+#ff99cc 45deg 90deg,
+#d580ff 90deg 135deg,
+#ff66b3 135deg 180deg,
+#ff99cc 180deg 225deg,
+#d580ff 225deg 270deg,
+#ff66b3 270deg 315deg,
+#ff99cc 315deg 360deg
+);
+}
+
+.pointer{
+font-size:40px;
+margin-bottom:-15px;
+}
+
+button{
+margin-top:25px;
+padding:15px 40px;
+font-size:25px;
+border:none;
+border-radius:30px;
+background:#ff66b3;
+color:white;
+box-shadow:0 0 20px pink;
+}
+
+.result{
+font-size:30px;
+margin-top:25px;
+text-shadow:0 0 15px pink;
+}
+
+.menu a{
+text-decoration:none;
+color:white;
+background:#ff66b3;
+padding:12px 25px;
+border-radius:20px;
+box-shadow:0 0 15px pink;
+margin:10px;
+display:inline-block;
+}
+
+.sakura{
+position:fixed;
+top:-50px;
+font-size:25px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-50px);
+}
+100%{
+transform:translateY(110vh);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎁 Lucky Spin Premium 🌸</h1>
+
+<div class="pointer">⬇️</div>
+
+<div class="wheel" id="wheel"></div>
+
+<button onclick="spinWheel()">🎉 PUTAR</button>
+
+<div class="result" id="hasil">
+Putar keberuntunganmu!
+</div>
+
+<br>
+
+<div class="menu">
+<a href="/">🏠 Beranda</a>
+<a href="/luckyspin">🔄 Putar Lagi</a>
+</div>
+
+</div>
+
+<script>
+
+let hadiah = [
+"💎 Diamond x100",
+"🎵 Lagu Favorit",
+"🌸 Bunga Sakura",
+"🍫 Coklat",
+"🎁 Hadiah Misterius",
+"⭐ Bintang Keberuntungan",
+"👑 Mahkota Emas",
+"❤️ Hati Spesial"
+];
+
+function spinWheel(){
+
+let deg = 3600 + Math.random()*360;
+
+document.getElementById("wheel").style.transform =
+"rotate("+deg+"deg)";
+
+setTimeout(function(){
+
+let random =
+hadiah[Math.floor(Math.random()*hadiah.length)];
+
+document.getElementById("hasil").innerHTML =
+"🎉 Selamat!<br><br>"+random;
+
+},5000);
+
+}
+
+for(let i=0;i<20;i++){
+
+let sakura=document.createElement("div");
+
+sakura.className="sakura";
+
+sakura.innerHTML="🌸";
+
+sakura.style.left=Math.random()*100+"%";
+
+sakura.style.animationDuration=
+(5+Math.random()*5)+"s";
+
+document.body.appendChild(sakura);
+
+}
+</script>
+
+</body>
+</html>

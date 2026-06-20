@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>🧩 Game Labirin 2D Premium</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+body{
+background:linear-gradient(to bottom,#2b003d,#5a2b6f,#d99ac5);
+color:white;
+text-align:center;
+font-family:Arial;
+}
+
+h1{
+margin-top:20px;
+}
+
+#maze{
+display:grid;
+grid-template-columns:repeat(10,35px);
+justify-content:center;
+gap:2px;
+margin-top:30px;
+}
+
+.cell{
+width:35px;
+height:35px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+border-radius:8px;
+}
+
+.wall{
+background:#2a0036;
+}
+
+.path{
+background:#ffb6d9;
+}
+
+.controls button{
+width:70px;
+height:70px;
+font-size:30px;
+border:none;
+border-radius:20px;
+background:#ff66b3;
+color:white;
+margin:5px;
+box-shadow:0 0 15px pink;
+}
+
+.menu{
+margin-top:20px;
+}
+
+.menu a{
+text-decoration:none;
+color:white;
+background:#ff66b3;
+padding:12px 20px;
+border-radius:20px;
+margin:10px;
+display:inline-block;
+box-shadow:0 0 15px pink;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧩 Game Labirin 2D Premium</h1>
+
+<p>Gunakan tombol arah untuk mencapai ⭐</p>
+
+<div id="maze"></div>
+
+<br>
+
+<div class="controls">
+<button onclick="move(-1,0)">⬆️</button>
+
+<br>
+
+<button onclick="move(0,-1)">⬅️</button>
+
+<button onclick="move(1,0)">⬇️</button>
+
+<button onclick="move(0,1)">➡️</button>
+</div>
+
+<div class="menu">
+<a href="/">🏠 Beranda</a>
+<a href="/labirin">🔄 Main Lagi</a>
+</div>
+
+<script>
+const mazeData = [
+[1,1,1,1,1,1,1,1,1,1],
+[1,0,0,0,1,0,0,0,0,1],
+[1,0,1,0,1,0,1,1,0,1],
+[1,0,1,0,0,0,0,1,0,1],
+[1,0,1,1,1,1,0,1,0,1],
+[1,0,0,0,0,1,0,1,0,1],
+[1,1,1,1,0,1,0,1,0,1],
+[1,0,0,1,0,0,0,1,0,1],
+[1,0,0,0,0,0,0,0,"⭐",1],
+[1,1,1,1,1,1,1,1,1,1]
+];
+
+let playerX = 1;
+let playerY = 1;
+
+function drawMaze() {
+
+let html = "";
+
+for(let i=0;i<10;i++) {
+
+for(let j=0;j<10;j++) {
+
+if(i==playerX && j==playerY){
+html += '<div class="cell path">😀</div>';
+}
+
+else if(mazeData[i][j]==1){
+html += '<div class="cell wall"></div>';
+}
+
+else if(mazeData[i][j]=="⭐"){
+html += '<div class="cell path">⭐</div>';
+}
+
+else{
+html += '<div class="cell path"></div>';
+}
+
+}
+
+}
+
+document.getElementById("maze").innerHTML = html;
+
+}
+
+function move(dx,dy){
+
+let newX = playerX + dx;
+let newY = playerY + dy;
+
+if(mazeData[newX][newY] != 1){
+
+playerX = newX;
+playerY = newY;
+
+if(mazeData[newX][newY] == "⭐"){
+alert("🎉 Selamat! Kamu Menang!");
+}
+
+drawMaze();
+
+}
+
+}
+
+drawMaze();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 Game Zone - RaynaN World</title>
+
+<style>
+body{
+background:linear-gradient(to bottom,#170225,#3f0a5c,#ffb6d9);
+font-family:Arial,sans-serif;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.box{
+max-width:500px;
+margin:auto;
+background:rgba(255,255,255,0.15);
+padding:30px;
+border-radius:25px;
+backdrop-filter:blur(8px);
+}
+
+input{
+padding:12px;
+border:none;
+border-radius:15px;
+font-size:18px;
+width:100px;
+text-align:center;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:20px;
+background:#ff69b4;
+color:white;
+font-size:18px;
+margin-top:15px;
+box-shadow:0 0 15px pink;
+}
+
+#hasil{
+margin-top:20px;
+font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>🎮 Game Tebak Angka</h1>
+
+<p>Tebak angka dari 1 sampai 10</p>
+
+<input type="number" id="angka">
+
+<br>
+
+<button onclick="cek()">Tebak!</button>
+
+<h2 id="hasil"></h2>
+
+</div>
+
+<script>
+
+var rahasia=Math.floor(Math.random()*10)+1;
+
+function cek(){
+
+var angka=document.getElementById("angka").value;
+
+if(angka==rahasia){
+document.getElementById("hasil").innerHTML=
+"🎉 Selamat! Jawaban benar!";
+}
+else{
+document.getElementById("hasil").innerHTML=
+"❌ Salah! Coba lagi.";
+}
+
+}
+
+</script>
+
+</body>
+</html>

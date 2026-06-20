@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 Tangkap Bintang - RaynaN World</title>
+
+<style>
+body{
+margin:0;
+background:linear-gradient(to bottom,#170225,#3f0a5c,#ffb6d9);
+font-family:Arial,sans-serif;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+h1{
+margin-top:20px;
+}
+
+#skor,#waktu{
+font-size:24px;
+margin:10px;
+}
+
+#area{
+position:relative;
+width:100vw;
+height:80vh;
+}
+
+.bintang{
+position:absolute;
+font-size:40px;
+cursor:pointer;
+animation:putar 1s infinite alternate;
+}
+
+@keyframes putar{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.2);
+}
+}
+</style>
+</head>
+<body>
+
+<h1>🌟 Tangkap Bintang</h1>
+
+<div id="skor">Skor: 0</div>
+<div id="waktu">Waktu: 30</div>
+
+<div id="area"></div>
+
+<script>
+
+let skor = 0;
+let waktu = 30;
+
+function buatBintang(){
+
+const bintang = document.createElement("div");
+bintang.className = "bintang";
+bintang.innerHTML = "⭐";
+
+bintang.style.left = Math.random()*90 + "vw";
+bintang.style.top = Math.random()*70 + "vh";
+
+bintang.onclick = function(){
+
+skor++;
+document.getElementById("skor").innerHTML =
+"Skor: " + skor;
+
+bintang.remove();
+
+};
+
+document.getElementById("area").appendChild(bintang);
+
+setTimeout(()=>{
+bintang.remove();
+},2000);
+
+}
+
+setInterval(buatBintang,800);
+
+let timer = setInterval(function(){
+
+waktu--;
+
+document.getElementById("waktu").innerHTML =
+"Waktu: " + waktu;
+
+if(waktu <= 0){
+
+clearInterval(timer);
+
+alert("🎉 Permainan selesai!\nSkor kamu: " + skor);
+
+location.reload();
+
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>

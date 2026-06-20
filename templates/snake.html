@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐍 Snake - RaynaN World</title>
+
+<style>
+body{
+background:linear-gradient(to bottom,#170225,#3f0a5c,#ffb6d9);
+display:flex;
+flex-direction:column;
+align-items:center;
+font-family:Arial,sans-serif;
+color:white;
+}
+
+h1{
+margin-top:20px;
+}
+
+canvas{
+background:#111;
+border:3px solid pink;
+margin-top:20px;
+}
+
+button{
+margin:5px;
+padding:12px 20px;
+font-size:18px;
+border:none;
+border-radius:15px;
+background:#ff69b4;
+color:white;
+}
+
+#controls{
+margin-top:15px;
+}
+</style>
+</head>
+<body>
+
+<h1>🐍 Snake Game</h1>
+
+<p>Skor: <span id="score">0</span></p>
+
+<canvas id="game" width="400" height="400"></canvas>
+
+<div id="controls">
+<div>
+<button onclick="ubahArah('up')">⬆️</button>
+</div>
+
+<div>
+<button onclick="ubahArah('left')">⬅️</button>
+<button onclick="ubahArah('down')">⬇️</button>
+<button onclick="ubahArah('right')">➡️</button>
+</div>
+</div>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const ukuran = 20;
+let skor = 0;
+
+let ular = [
+{x:10,y:10}
+];
+
+let arah = "right";
+
+let makanan = {
+x:15,
+y:15
+};
+
+function gambar(){
+
+ctx.fillStyle="#111";
+ctx.fillRect(0,0,400,400);
+
+ctx.fillStyle="lime";
+
+ular.forEach(bagian=>{
+ctx.fillRect(
+bagian.x*ukuran,
+bagian.y*ukuran,
+ukuran-2,
+ukuran-2
+);
+});
+
+ctx.fillStyle="red";
+
+ctx.fillRect(
+makanan.x*ukuran,
+makanan.y*ukuran,
+ukuran-2,
+ukuran-2
+);
+
+let kepala = {
+x:ular[0].x,
+y:ular[0].y
+};
+
+if(arah=="up") kepala.y--;
+if(arah=="down") kepala.y++;
+if(arah=="left") kepala.x--;
+if(arah=="right") kepala.x++;
+
+ular.unshift(kepala);
+
+if(
+kepala.x==makanan.x &&
+kepala.y==makanan.y
+){
+skor++;
+document.getElementById("score").innerText=skor;
+
+makanan={
+x:Math.floor(Math.random()*20),
+y:Math.floor(Math.random()*20)
+};
+}else{
+ular.pop();
+}
+
+if(
+kepala.x<0 ||
+kepala.y<0 ||
+kepala.x>=20 ||
+kepala.y>=20
+){
+alert("💀 Game Over!\nSkor: "+skor);
+
+ular=[{x:10,y:10}];
+arah="right";
+skor=0;
+document.getElementById("score").innerText=0;
+}
+}
+
+function ubahArah(a){
+arah=a;
+}
+
+document.addEventListener("keydown",e=>{
+if(e.key=="ArrowUp") arah="up";
+if(e.key=="ArrowDown") arah="down";
+if(e.key=="ArrowLeft") arah="left";
+if(e.key=="ArrowRight") arah="right";
+});
+
+setInterval(gambar,150);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+k<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 RaynaN World 🌙</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(to bottom,#170225,#3f0a5c,#ffb6d9);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+header{
+padding:20px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+}
+
+h1{
+font-size:40px;
+text-shadow:0 0 20px pink;
+}
+
+nav{
+margin-top:15px;
+}
+
+nav a{
+display:inline-block;
+margin:5px;
+padding:12px 18px;
+background:#ff69b4;
+border-radius:25px;
+text-decoration:none;
+color:white;
+box-shadow:0 0 15px pink;
+transition:0.3s;
+}
+
+nav a:hover{
+transform:scale(1.1);
+}
+
+.hero{
+padding:40px 20px;
+}
+
+.box{
+max-width:700px;
+margin:auto;
+background:rgba(255,255,255,0.15);
+padding:25px;
+border-radius:25px;
+backdrop-filter:blur(8px);
+}
+
+.slider{
+width:100%;
+border-radius:20px;
+margin-top:20px;
+}
+
+.star{
+position:fixed;
+color:white;
+animation:blink 2s infinite alternate;
+pointer-events:none;
+}
+
+@keyframes blink{
+from{
+opacity:.2;
+}
+to{
+opacity:1;
+}
+}
+
+.sakura{
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall linear infinite;
+pointer-events:none;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+footer{
+margin-top:50px;
+padding:20px;
+background:rgba(255,255,255,0.1);
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🌸 RaynaN World 🌙</h1>
+
+<nav>
+<a href="#">🏠 Beranda</a>
+<a href="#">🎮 Game</a>
+<a href="#">🎵 Musik</a>
+<a href="#">🖼️ Galeri</a>
+<a href="#">🤖 AI World</a>
+</nav>
+</header>
+
+<div class="hero">
+
+<div class="box">
+
+<h2>Selamat Datang 🌸</h2>
+
+<p>
+Website hiburan berisi game, musik, galeri, AI Chat dan berbagai fitur menarik lainnya.
+</p>
+
+<img id="slide" class="slider"
+src="https://picsum.photos/id/237/700/300">
+
+</div>
+
+</div>
+
+<footer>
+© 2026 RaynaN World 🌸
+</footer>
+
+<script>
+
+// Slideshow
+var gambar=[
+"https://picsum.photos/id/237/700/300",
+"https://picsum.photos/id/1025/700/300",
+"https://picsum.photos/id/1069/700/300",
+"https://picsum.photos/id/1074/700/300"
+];
+
+var i=0;
+
+setInterval(function(){
+i++;
+if(i>=gambar.length)i=0;
+document.getElementById("slide").src=gambar[i];
+},3000);
+
+
+// Bintang
+for(let i=0;i<50;i++){
+let bintang=document.createElement("div");
+bintang.className="star";
+bintang.innerHTML="✦";
+bintang.style.left=Math.random()*100+"vw";
+bintang.style.top=Math.random()*100+"vh";
+bintang.style.fontSize=(Math.random()*10+8)+"px";
+document.body.appendChild(bintang);
+}
+
+
+// Sakura
+function bunga(){
+let sakura=document.createElement("div");
+
+sakura.className="sakura";
+sakura.innerHTML="🌸";
+
+sakura.style.left=Math.random()*100+"vw";
+sakura.style.fontSize=(Math.random()*15+15)+"px";
+sakura.style.animationDuration=(Math.random()*5+5)+"s";
+
+document.body.appendChild(sakura);
+
+setTimeout(()=>{
+sakura.remove();
+},10000);
+
+}
+
+setInterval(bunga,300);
+
+</script>
+
+</body>
+</html>

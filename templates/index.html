@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 RaynaN World 🌙</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+<header>
+<h1>🌸 RaynaN World 🌙</h1>
+<h3>Pink Sakura Night Premium</h3>
+<p>🎮 Game • 🎵 Musik • 🤖 AI • 🌸 Hiburan</p>
+</header>
+
+<div class="card">
+<h2>🌸 Selamat Datang</h2>
+
+<p>
+Selamat datang di RaynaN World.
+Website game dan hiburan dengan tema Pink Sakura Night Premium.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎮 Game Zone</h2>
+
+<p><a href="/game"><button>🎲 Tebak Angka</button></a></p>
+
+<p><a href="/labirin"><button>🧩 Labirin 2D</button></a></p>
+
+<p><a href="/snake"><button>🐍 Snake Game</button></a></p>
+
+<p><a href="/bintang"><button>⭐ Tangkap Bintang</button></a></p>
+
+<p><a href="/luckyspin"><button>🎁 Lucky Spin</button></a></p>
+
+<p><a href="/tebakwarna"><button>🌈 Tebak Warna</button></a></p>
+
+<p><a href="/balapan"><button>🏎️ Balapan Mobil 2D</button></a></p>
+
+</div>
+
+<footer>
+<audio autoplay loop controls>
+    <source src="{{ url_for('static', filename='lagu1.mp3') }}" type="audio/mpeg">
+</audio>
+<h3>© 2026 RaynaN World 🌸</h3>
+
+</footer>
+
+<script>
+
+function buatSakura(){
+
+let sakura = document.createElement("div");
+
+sakura.innerHTML = "🌸";
+
+sakura.className = "sakura";
+
+sakura.style.left = Math.random()*100 + "vw";
+
+sakura.style.fontSize = (15+Math.random()*20)+"px";
+
+sakura.style.animationDuration = (5+Math.random()*5)+"s";
+
+document.body.appendChild(sakura);
+
+setTimeout(function(){
+sakura.remove();
+},10000);
+
+}
+
+setInterval(buatSakura,300);
+
+// Bintang berkelap-kelip
+
+function buatBintang(){
+
+let star = document.createElement("div");
+
+star.innerHTML = "✦";
+
+star.className = "star";
+
+star.style.left = Math.random()*100 + "vw";
+
+star.style.top = Math.random()*100 + "vh";
+
+star.style.fontSize = (5+Math.random()*10)+"px";
+
+document.body.appendChild(star);
+
+setTimeout(function(){
+
+star.remove();
+
+},4000);
+
+}
+
+setInterval(buatBintang,200);
+
+</script>
+
+</body>
+</html>
